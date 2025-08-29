@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace Comandas.Wf.Modelos;
 
-namespace Comandas.Wf.Modelos
+public class PedidoCozinha
 {
-    internal class PedidoCozinha
-    {
-    }
+    public int Id { get; set; }
+    public int Comanda { get; set; }
+    public int SituacaoId { get; set; } 
 }

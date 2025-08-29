@@ -1,10 +1,9 @@
 ﻿
 namespace Comandas.Wf.Modelos;
 
-public class Comanda
+internal class Mesa
 {
     public int Id { get; set; }
     public int NumeroMesa { get; set; }
-    public string NomeCliente { get; set; }
-    public int SituacaoComanda { get; set; }
+    public int SituacaoMesa { get; set; }
 }
