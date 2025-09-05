@@ -28,18 +28,28 @@ public class ComandasDbContext:DbContext
         {
             m.ToTable("Mesa");
         });
+
         modelBuilder.Entity<Usuario>(u =>
         {
             u.ToTable("Usuario");
+            u.Property(u => u.Nome).HasColumnType("varchar(100)");
+            u.Property(u => u.Senha).HasColumnType("varchar(100)");
+            u.Property(u => u.Email).HasColumnType("varchar(100)");
         });
+
         modelBuilder.Entity<CardapioItem>(ci =>
         {
             ci.ToTable("CardapioItem");
+            ci.Property(ci => ci.Titulo).HasColumnType("varchar(200)");
+            ci.Property(ci => ci.Descricao).HasColumnType("varchar(400)");
         });
+
         modelBuilder.Entity<Comanda>(c =>
         {
             c.ToTable("Comanda");
+            c.Property(c => c.NomeCliente).HasColumnType("varchar(100)");
         });
+
         modelBuilder.Entity<ComandaItem>(ci =>
         {
             ci.ToTable("ComandaItem");
@@ -76,7 +86,16 @@ public class ComandasDbContext:DbContext
             .HasForeignKey(pci => pci.PedidoCozinhaId)
             .OnDelete(DeleteBehavior.NoAction);
 
+        modelBuilder.Entity<PedidoCozinhaItem>()
+            .HasOne(pci => pci.PedidoCozinha)
+            .WithMany(pc => pc.PedidoCozinhaItems)
+            .HasForeignKey(pci => pci.PedidoCozinhaId)
+            .OnDelete(DeleteBehavior.NoAction);
 
+        modelBuilder.Entity<PedidoCozinhaItem>()
+            .HasOne(pci => pci.ComandaItem)
+            .WithMany()
+            .HasForeignKey(pci => pci.ComandaItemId);
 
         base.OnModelCreating(modelBuilder);
     }
