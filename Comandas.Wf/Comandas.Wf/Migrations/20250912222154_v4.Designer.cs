@@ -2,6 +2,7 @@
 using Comandas.Wf;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Comandas.Wf.Migrations
 {
     [DbContext(typeof(ComandasDbContext))]
-    partial class ComandasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912222154_v4")]
+    partial class v4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,11 +170,11 @@ namespace Comandas.Wf.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PerfilUsuario", (string)null);
+                    b.ToTable("PerfilUsuario");
                 });
 
             modelBuilder.Entity("Comandas.Wf.Modelos.Usuario", b =>

@@ -11,6 +11,7 @@ public class ComandasDbContext:DbContext
         
     }
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<PerfilUsuario> PerfilUsuarios { get; set; }
     public DbSet<CardapioItem> CardapioItems { get; set; }
     public DbSet<Comanda> Comandas { get; set; }
     public DbSet<ComandaItem> ComandaItems { get; set; }
@@ -35,6 +36,12 @@ public class ComandasDbContext:DbContext
             u.Property(u => u.Nome).HasColumnType("varchar(100)");
             u.Property(u => u.Senha).HasColumnType("varchar(100)");
             u.Property(u => u.Email).HasColumnType("varchar(100)");
+        });
+
+        modelBuilder.Entity<PerfilUsuario>(pu =>
+        {
+            pu.ToTable("PerfilUsuario");
+            pu.Property(pu => pu.Descricao).HasColumnType("varchar(100)");
         });
 
         modelBuilder.Entity<CardapioItem>(ci =>

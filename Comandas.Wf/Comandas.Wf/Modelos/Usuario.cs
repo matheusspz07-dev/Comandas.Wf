@@ -11,5 +11,11 @@ public class Usuario
     public string Nome { get; set; }
     public string Senha { get; set; }
     public string Email { get; set; }
-
+    public int PerfilUsuarioId { get; set; }
+    public virtual PerfilUsuario PerfilUsuario { get; set; }
+}
+public class PerfilUsuario
+{
+    public int Id { get; set; }
+    public string Descricao { get; set; }
 }
